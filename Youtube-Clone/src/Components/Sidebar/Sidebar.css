@@ -52,6 +52,7 @@
 
 .small-sidebar p {
     display: none;
+
 }
 
 .small-sidebar h3 {
@@ -61,4 +62,9 @@
 .small-sidebar hr {
     width: 50%;
     margin-bottom: 25px;
+}
+
+.side-link.active img {
+    padding-bottom: 2px;
+    border-bottom: 3px solid red;
 }

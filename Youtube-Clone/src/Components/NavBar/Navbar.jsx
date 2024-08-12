@@ -1,3 +1,4 @@
+import propTypes from "prop-types";
 import "./Navbar.css";
 import menu_icon from "../../assets/menu.png";
 import logo from "../../assets/logo.png";
@@ -35,6 +36,10 @@ const Navbar = ({ setSidebar }) => {
       </div>
     </nav>
   );
+};
+
+Navbar.propTypes = {
+  setSidebar: propTypes.bool,
 };
 
 export default Navbar;
