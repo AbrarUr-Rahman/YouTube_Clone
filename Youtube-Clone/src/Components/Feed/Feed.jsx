@@ -17,12 +17,36 @@ import moment from "moment";
 const Feed = ({ category }) => {
   const [data, setData] = useState([]);
   const fetchData = async () => {
-    const videoList_url = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=US&videoCategoryId=${category}&key=${API_KEY}
-`;
-    await fetch(videoList_url)
-      .then((res) => res.json())
-      .then((data) => setData(data.items));
+    //Check to see if quota expired
+    try {
+      const videoList_url = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=US&videoCategoryId=${category}&key=${API_KEY}`;
+      const res = await fetch(videoList_url);
+      const data = await res.json();
+
+      console.log("API Response:", data); // Inspect the entire response
+
+      if (data && data.items) {
+        setData(data.items);
+      } else {
+        alert("Quota Expired");
+        console.error("No items found in data:", data);
+        setData([]); // Fallback to an empty array if items are not found
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setData([]); // Fallback to an empty array in case of error
+    }
   };
+
+  //# Works but no try catch
+
+  //   const fetchData = async () => {
+  //     const videoList_url = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=US&videoCategoryId=${category}&key=${API_KEY}
+  // `;
+  //     await fetch(videoList_url)
+  //       .then((res) => res.json())
+  //       .then((data) => setData(data.items));
+  //   };
 
   useEffect(() => {
     fetchData();
@@ -61,6 +85,7 @@ const Feed = ({ category }) => {
   //   );
   // };
 
+  //% Running Code
   return (
     <div className="feed">
       {data.map((item, index) => (
