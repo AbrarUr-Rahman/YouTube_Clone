@@ -4,11 +4,11 @@ import Recommended from "../../Components/Recommended/Recommended";
 import "./Video.css";
 
 const Video = () => {
-  const { videoId, category } = useParams(); //!UseParams Hook
+  const { videoId, categoryId } = useParams(); //!UseParams Hook
   return (
     <div className="play-container">
       <PlayVideo videoId={videoId} />
-      <Recommended />
+      <Recommended categoryId={categoryId} />
     </div>
   );
 };

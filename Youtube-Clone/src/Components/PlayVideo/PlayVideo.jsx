@@ -1,19 +1,23 @@
 import "./PlayVideo.css";
-import video1 from "../../assets/video.mp4";
+// import video1 from "../../assets/video.mp4";
 import like from "../../assets/like.png";
 import dislike from "../../assets/dislike.png";
 import share from "../../assets/share.png";
 import save from "../../assets/save.png";
-import jack from "../../assets/jack.png";
+// import jack from "../../assets/jack.png";
 import user_profile from "../../assets/user_profile.jpg";
 import { useEffect, useState } from "react";
 import { API_KEY } from "../../data";
 import { value_converter } from "../../data";
 import moment from "moment";
+import { useParams } from "react-router-dom";
 
-const PlayVideo = ({ videoId }) => {
+const PlayVideo = () => {
+  const { videoId } = useParams();
+
   const [apiData, setApiData] = useState(null);
   const [channelData, setChannelData] = useState(null);
+  const [commentData, setCommentData] = useState(null);
 
   const fetchVideoData = async () => {
     //#Fetching video data
@@ -31,15 +35,25 @@ const PlayVideo = ({ videoId }) => {
     await fetch(channelDataUrl)
       .then((res) => res.json())
       .then((data) => setChannelData(data.items[0]));
+
+    //# Fetching comment data
+    const commentUrl = `https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&maxResults=50&videoId=${videoId}&key=${API_KEY}
+`;
+
+    await fetch(commentUrl)
+      .then((res) => res.json())
+      .then((data) => setCommentData(data.items));
   };
 
   useEffect(() => {
     fetchVideoData();
-  }, []);
+  }, [videoId]);
 
   useEffect(() => {
     fetchOtherData();
-  }, []);
+  }, [apiData]);
+
+  // console.log(commentData);
 
   return (
     <>
@@ -103,101 +117,39 @@ const PlayVideo = ({ videoId }) => {
             {apiData ? value_converter(apiData.statistics.commentCount) : 102}{" "}
             Comments
           </h4>
-          <div className="comment">
-            <img src={user_profile} alt="" />
-            <div>
-              <h3>
-                Jack the Ripper <span>1 day ago</span>
-              </h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam
-                non ea recusandae iusto necessitatibus nostrum ipsa reiciendis
-                perferendis tempora deleniti.
-              </p>
-              <div className="comment-action">
-                <img src={like} alt="" />
-                <span>255</span>
-                <img src={dislike} alt="" />
-                <span>13</span>
-              </div>
-            </div>
-          </div>
-          <div className="comment">
-            <img src={user_profile} alt="" />
-            <div>
-              <h3>
-                Jack the Ripper <span>1 day ago</span>
-              </h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam
-                non ea recusandae iusto necessitatibus nostrum ipsa reiciendis
-                perferendis tempora deleniti.
-              </p>
-              <div className="comment-action">
-                <img src={like} alt="" />
-                <span>255</span>
-                <img src={dislike} alt="" />
-                <span>13</span>
-              </div>
-            </div>
-          </div>
-          <div className="comment">
-            <img src={user_profile} alt="" />
-            <div>
-              <h3>
-                Jack the Ripper <span>1 day ago</span>
-              </h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam
-                non ea recusandae iusto necessitatibus nostrum ipsa reiciendis
-                perferendis tempora deleniti.
-              </p>
-              <div className="comment-action">
-                <img src={like} alt="" />
-                <span>255</span>
-                <img src={dislike} alt="" />
-                <span>13</span>
-              </div>
-            </div>
-          </div>
-          <div className="comment">
-            <img src={user_profile} alt="" />
-            <div>
-              <h3>
-                Jack the Ripper <span>1 day ago</span>
-              </h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam
-                non ea recusandae iusto necessitatibus nostrum ipsa reiciendis
-                perferendis tempora deleniti.
-              </p>
-              <div className="comment-action">
-                <img src={like} alt="" />
-                <span>255</span>
-                <img src={dislike} alt="" />
-                <span>13</span>
-              </div>
-            </div>
-          </div>
-          <div className="comment">
-            <img src={user_profile} alt="" />
-            <div>
-              <h3>
-                Jack the Ripper <span>1 day ago</span>
-              </h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam
-                non ea recusandae iusto necessitatibus nostrum ipsa reiciendis
-                perferendis tempora deleniti.
-              </p>
-              <div className="comment-action">
-                <img src={like} alt="" />
-                <span>255</span>
-                <img src={dislike} alt="" />
-                <span>13</span>
-              </div>
-            </div>
-          </div>
+
+          {commentData
+            ? commentData.map((item, index) => {
+                return (
+                  <div className="comment" key={index}>
+                    <img
+                      src={
+                        item.snippet.topLevelComment.snippet
+                          .authorProfileImageUrl
+                      }
+                      alt=""
+                    />
+                    <div>
+                      <h3>
+                        {item.snippet.topLevelComment.snippet.authorDisplayName}{" "}
+                        <span>1 day ago</span>
+                      </h3>
+                      <p>{item.snippet.topLevelComment.snippet.textDisplay}</p>
+                      <div className="comment-action">
+                        <img src={like} alt="" />
+                        <span>
+                          {value_converter(
+                            item.snippet.topLevelComment.snippet.likeCount
+                          )}
+                        </span>
+                        <img src={dislike} alt="" />
+                        <span></span>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })
+            : []}
         </div>
       </div>
     </>
