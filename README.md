@@ -69,4 +69,43 @@ To fetch data from the YouTube API, you need to set up your API keys:
      API_KEY_INDEX = (API_KEY_INDEX + 1) % API_KEYS.length;
    };
 
+## Usage
+
+- **Browse Videos:** Navigate through different categories using the sidebar to discover trending videos in each category.
+- **Search Videos:** Use the search bar at the top to find videos by specific keywords.
+- **View Video Details:** Click on any video thumbnail to view the video in detail, along with statistics such as views, likes, and comments, as well as related videos.
+- **Responsive Design:** The application is fully responsive and works well on both desktop and mobile devices.
+
+## Dependencies
+
+This project utilizes the following dependencies:
+
+- **React:** A JavaScript library for building user interfaces.
+- **React Router DOM:** A collection of navigational components for React, allowing you to create dynamic and single-page applications.
+- **Moment.js:** A library for parsing, validating, manipulating, and displaying dates and times in JavaScript.
+- **Prop-Types:** A library for type-checking props in React components.
+- **Fetch API:** A modern interface for making network requests in JavaScript.
+
+To install these dependencies, run the following command in your project directory:
+
+```bash
+npm install react react-router-dom moment prop-types
+
+## Technologies Used
+
+- **React:** The primary JavaScript library used for building the user interface and components.
+- **JavaScript (ES6+):** The programming language used throughout the project, leveraging modern ES6+ features like arrow functions, async/await, and destructuring.
+- **CSS:** Used for styling the components, creating responsive layouts, and ensuring a polished user interface.
+- **YouTube Data API v3:** Integrated to fetch video data, including trending videos, search results, and video details.
+- **Google Developer Console:** Utilized to manage API keys and configure project settings related to the YouTube API.
+- **React Router DOM:** A library for handling routing within the React application, allowing seamless navigation between different pages and components.
+- **Moment.js:** A date manipulation library used to format and display video publish dates and times.
+- **Prop-Types:** A type-checking library used in React components to validate the props being passed, ensuring robust and error-free code.
+- **Fetch API:** Used to make network requests to the YouTube Data API, retrieving video data dynamically.
+- **Webpack:** A module bundler used to compile JavaScript modules, assets, and dependencies into a single bundle.
+- **Babel:** A JavaScript compiler used to convert ES6+ code into a format compatible with older browsers, ensuring cross-browser support.
+
+
+
+
     
