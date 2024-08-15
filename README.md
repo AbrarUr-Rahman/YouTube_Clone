@@ -5,25 +5,19 @@ A YouTube-like video streaming application built with React, utilizing the YouTu
 ## Table of Contents
 
 - [Features](#features)
-- [Demo](#demo)
 - [Installation](#installation)
 - [API Configuration](#api-configuration)
 - [Usage](#usage)
 - [Technologies Used](#technologies-used)
-- [Contributing](#contributing)
-- [License](#license)
+
 
 ## Features
 
 - Browse popular videos by category
 - Responsive design for mobile and desktop
 - Video detail page with related videos and comments
-- Search for videos by keyword
-- Light and dark mode support
 
-## Demo
 
-Check out the live demo of the project [here](https://your-demo-link.com).
 
 ## Installation
 
