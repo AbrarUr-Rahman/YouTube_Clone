@@ -88,8 +88,9 @@ This project utilizes the following dependencies:
 
 To install these dependencies, run the following command in your project directory:
 
-```bash
+```bash 
 npm install react react-router-dom moment prop-types
+```
 
 ## Technologies Used
 
