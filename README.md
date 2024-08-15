@@ -38,4 +38,8 @@ Check out the live demo of the project [here](https://your-demo-link.com).
 4. **Start the development server:**
    ```bash
    npm start
+## API Configuration
+  1.Go to the Google Developer Console.
+  2.Create a new project and enable the YouTube Data API v3.
+  3.Generate an API key.
     
