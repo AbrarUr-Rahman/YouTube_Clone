@@ -33,6 +33,9 @@ Check out the live demo of the project [here](https://your-demo-link.com).
    git clone https://github.com/your-username/youtube-clone.git
    cd youtube-clone
 2. **Install dependencies:**
+   ```bash
    npm install
-3. **Start the development server:**
-    npm start
+4. **Start the development server:**
+   ```bash
+   npm start
+    
