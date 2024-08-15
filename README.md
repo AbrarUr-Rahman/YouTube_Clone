@@ -39,7 +39,34 @@ Check out the live demo of the project [here](https://your-demo-link.com).
    ```bash
    npm start
 ## API Configuration
-  1.Go to the Google Developer Console.
-  2.Create a new project and enable the YouTube Data API v3.
-  3.Generate an API key.
+
+To fetch data from the YouTube API, you need to set up your API keys:
+
+1. **Get API Key:**
+
+   - Go to the [Google Developer Console](https://console.developers.google.com/).
+   - Create a new project and enable the YouTube Data API v3.
+   - Generate an API key.
+
+2. **Switch API Keys on Quota Exceeded:**
+
+   You can manage your API keys in the `data.js` file. If your quota is exceeded for one key, the app can automatically switch to another:
+
+   ```javascript
+   export const API_KEYS = [
+     'YOUR_FIRST_API_KEY',
+     'YOUR_SECOND_API_KEY',
+     // Add more keys as needed
+   ];
+
+   export let API_KEY_INDEX = 0;
+
+   export const getAPIKey = () => {
+     return API_KEYS[API_KEY_INDEX];
+   };
+
+   export const switchAPIKey = () => {
+     API_KEY_INDEX = (API_KEY_INDEX + 1) % API_KEYS.length;
+   };
+
     
