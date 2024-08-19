@@ -24,8 +24,8 @@ A YouTube-like video streaming application built with React, utilizing the YouTu
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/youtube-clone.git
-   cd youtube-clone
+   https://github.com/AbrarUr-Rahman/YouTube_Clone.git
+   cd YouTube_Clone
 2. **Install dependencies:**
    ```bash
    npm install
